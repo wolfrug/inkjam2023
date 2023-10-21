@@ -41,3 +41,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: ObjectLight
+    uniqueID: 1453395829
+    locked: 0
+  - name: WindowLight
+    uniqueID: 3097698459
+    locked: 0
