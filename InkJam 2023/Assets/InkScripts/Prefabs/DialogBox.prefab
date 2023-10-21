@@ -121,7 +121,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3254785037009892292}
   m_HandleRect: {fileID: 3254785037009892293}
   m_Direction: 0
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -161,12 +161,12 @@ RectTransform:
   - {fileID: 3254785037288431428}
   - {fileID: 3254785036536022138}
   - {fileID: 3254785037060739005}
-  m_Father: {fileID: 8514496866400163662}
+  m_Father: {fileID: 2524562332416560591}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 33.372875, y: -13.053608}
+  m_AnchoredPosition: {x: 0.000011444092, y: -0.0000038146973}
   m_SizeDelta: {x: 757.299, y: 380.05}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3254785036543200085
@@ -471,7 +471,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3254785038202008166}
   m_HandleRect: {fileID: 3254785038202008167}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -769,7 +769,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8514496866400163662}
+  - component: {fileID: 2524562332416560591}
   - component: {fileID: 7730059454888736046}
   m_Layer: 0
   m_Name: DialogBox
@@ -778,15 +778,15 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8514496866400163662
-Transform:
+--- !u!224 &2524562332416560591
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6618238374765881647}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -56.206924, y: 21.985043, z: -3.6456635}
+  m_LocalPosition: {x: 0, y: 0, z: -3.6456635}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -794,6 +794,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 826.0962, y: 383.2753}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &7730059454888736046
 MonoBehaviour:
   m_ObjectHideFlags: 0
