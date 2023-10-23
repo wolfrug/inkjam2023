@@ -2,20 +2,21 @@ INCLUDE inkjam2023_functions.ink
 ->start
 
 ==toDoList
-{fixBreaker:<s>}\- Fix the breaker<><br>{fixBreaker:</s>}
+{fixBreaker:<s>}\- Fix the breaker<>{fixBreaker:</s>}
 {fixBreaker:
-{makeFood.options:<s>}\- Go to the kitchen<><br>{makeFood.options:</s>}
+{makeFood.options:<s>}\- Go to the kitchen<>{makeFood.options:</s>}
 }
 {makeFood.options:
-{makeFood.finish:<s>}\- Make the Special Bait for your brother.<><br>{makeFood.finish:</s>}
+{makeFood.finish:<s>}\- Make the Special Bait for your brother.<>{makeFood.finish:</s>}
 }
 {makeFood.finish:
-\- Feed the Special Bait to your brother.<><br>
+\- Feed the Special Bait to your brother.<>
 }
+{notesTaken>0: <br><br>\- Notes Found: {notesTaken} / 14}
 ->END
 
 ==start
-You awaken to utter darkness from a horrible nightmare.
+You awaken to utter darkness from a horrible nightmare. The man in the cap was there. He was hunting you.
 
 The lights have gone out. Again. #lightningStrike
 
@@ -30,7 +31,7 @@ In the distance, you hear your brother's moan. PLAY_SFX(SFX_ZOMBIE_MOAN) #intera
 
 That's how it happened for him, after all. Just one moment of inattentiveness... PLAY_SFX(SFX_ZOMBIE_MOAN)
 
-...you better see to the breaker. You remember it's by the main door in the hall. #updateToDoList
+...you better see to the breaker. You remember it's by the main door in the hall. #openNotes #updateToDoList 
 
 <color=green>[Use the mouse to look around, WASD or arrow keys to move. Use E to interact. Watch out for your brother. He is feeling...under the weather.]</color>
 ->DONE
@@ -175,7 +176,7 @@ You lost... #restart
 ==victory
 The drugs take effect, and slowly but surely your brother's limbs begin to weaken and losen, and before he finishes the last bite he collapses.
 
-He'll rest now, finally, and so can you. Tomorrow is a new day. A new hope for the cure. It can't be long now...
+He'll rest now, finally, and so can you. Tomorrow is a new day. He'll get better by tomorrow. You're sure of it...
 
 + [Finish.] #winGame
 You win!
@@ -184,15 +185,81 @@ You win!
 ==descriptions
 =bait
 {bait<2:
-Your special concoction. Your brother goes crazy for it. Perfect for if you need to sneak by him.
+Some bait. It won't last long, but it might buy you some time. SET_TEXTBOX(playerBox, current)
 }
 ->END
+=storeroom
+{storeroom<2:
+One of your storerooms, in desperate need of inventory. SET_TEXTBOX(playerBox, current)
+}
+->DONE
+=kitchen
+{kitchen<2:
+The kitchen. Could use some utensils. SET_TEXTBOX(playerBox, current)
+}
+->DONE
+=outsidedoor
+Yep, still locked and barred. No-one coming in this way... SET_TEXTBOX(playerBox, current)
+->DONE
+=backdoor
+Wait...was someone there? A man in a cap? ...no. SET_TEXTBOX(playerBox, current)
+->DONE
+=hallway
+{I need to clean this place... |This place could use a broom... SET_TEXTBOX(playerBox, player)}
+->DONE
 =bed
-Your brother's old bed...you really ought to clean it up.
+Your brother's old bed...you really ought to clean it up. SET_TEXTBOX(playerBox, current)
 ->END
 =bath
-He stumbled here when the sickness started to get bad...
+He stumbled here when the sickness started to get bad... SET_TEXTBOX(playerBox, current)
 ->END
 =breaker
 Damn thing keeps going on the fritz...
 ->END
+
+==notes
+~notesTaken++
+#updateToDoList
+{~->n1|->n2|->n3|->n4|->n5|->n6|->n7|->n8|->n9|->n10|->n11|->n12|->n13|->n14}
+=n1
+"October 4. Jason and I finished getting ready for lockdown. The talking heads on the news seem to think this will all be over by spring, but we all know how that turned out last time..."  SET_TEXTBOX(noteBox, current) PLAY_SFX(SFX_TAKE_NOTE)
+->DONE
+=n2
+"October 8. Notes to self: the sick are very slow, have shit sight, can't stop moaning and groaning, smell really bad, and are constantly hungry. Yuck." SET_TEXTBOX(noteBox, current)PLAY_SFX(SFX_TAKE_NOTE)
+->DONE
+=n3
+"October 18. Week two of lockdown. The talking heads insist a vaccine is just around the corner. Some new mRNA thing that absolutely won't give you cancer or autism." SET_TEXTBOX(noteBox, current) PLAY_SFX(SFX_TAKE_NOTE)
+->DONE
+=n4
+"November 1. Saw someone moving around out there. Maybe a neighbour. Maybe an opportunist. Jason went out to tell him to find his own mansion to squat in." SET_TEXTBOX(noteBox, current) PLAY_SFX(SFX_TAKE_NOTE)
+->DONE
+=n5
+"November 2. Shit. Fuck. Shit fuck ass. It wasn't a neighbour. Or it was, but the wrong kind. Don't they know they have to ISOLATE when they've been...ah shit." SET_TEXTBOX(noteBoxBlood, current) PLAY_SFX(SFX_TAKE_NOTE)
+->DONE
+=n6
+"November 15. He begged me to kill him at the end, but the talking heads said the vaccine was just around the corner. It was just the pain talking I think." SET_TEXTBOX(noteBoxBlood, current) PLAY_SFX(SFX_TAKE_NOTE)
+->DONE
+=n7
+"November...? Moved Jason to his new room, away from the windows. He gets too excited seeing the great outdoors, always wants to escape. Can't have that. Isolate!" SET_TEXTBOX(noteBoxBlood, current) PLAY_SFX(SFX_TAKE_NOTE)
+->DONE
+=n8
+"December...? Got Jason a Christmas present. It's probably Christmas. A live bunny. It kept him occupied for hours in his room. Fewer talking heads on the TV these days." SET_TEXTBOX(noteBoxBlood, current) PLAY_SFX(SFX_TAKE_NOTE)
+->DONE
+=n9
+"January...? Just heard on the radio the vaccines are being shipped out now. Nice. Except they say only the uninfected will be dosed. Boo. I guess me and Jason will have to wait." SET_TEXTBOX(noteBox, current) PLAY_SFX(SFX_TAKE_NOTE)
+->DONE
+=n10
+"February...? Running a little low on supplies, but not much left of winter now. Weather is getting really shitty though, and power is a bit spotty. But so far so good." SET_TEXTBOX(noteBox, current) PLAY_SFX(SFX_TAKE_NOTE)
+->DONE
+=n11
+"March...? I thought I saw someone outside again. A man in a cap. I think he might have had a gun. Fuck. Can't let him see Jason. There are all kinds of crazies out there these days." SET_TEXTBOX(noteBox, current) PLAY_SFX(SFX_TAKE_NOTE)
+->DONE
+=n12
+"April...? Heard they are airdropping the vaccine now. Local community got a shipment. Guess it's finally time for me to go for a little trip. Just hope Jason stays safe while I'm gone..." SET_TEXTBOX(noteBox, current) PLAY_SFX(SFX_TAKE_NOTE)
+->DONE
+=n13
+"May...? It didn't work. I injected him. Full dose. Gave him my dose too. Still nothing. Maybe...maybe it just needs more time, because he was infected so long? That's probably it. He just needs more time..." SET_TEXTBOX(noteBoxBlood, current) PLAY_SFX(SFX_TAKE_NOTE)
+->DONE
+=n14
+"I saw the man in the cap again. I'm sure of it. But I'm also sure Jason is talking again. I can leave the door open most days now. He's getting better. Slowly but surely." SET_TEXTBOX(noteBoxBlood, current) PLAY_SFX(SFX_TAKE_NOTE)
+->DONE

@@ -8,6 +8,8 @@ public class PlayerMovement : MonoBehaviour
 {
     public bool m_enabled = true;
     public Animator m_playerAnimator;
+
+    public Transform m_avatar;
     public Rigidbody2D m_playerRB;
     public CustomAudioSource m_audioSource;
 
@@ -59,11 +61,11 @@ public class PlayerMovement : MonoBehaviour
 
             m_playerRB.velocity = translate * m_speed;
             Vector3 mousePos = Input.mousePosition;
-            Vector3 objectPos = Camera.main.WorldToScreenPoint(transform.position);
+            Vector3 objectPos = Camera.main.WorldToScreenPoint(m_avatar.transform.position);
             mousePos.x = mousePos.x - objectPos.x;
             mousePos.y = mousePos.y - objectPos.y;
             float playerRotationAngle = Mathf.Atan2(mousePos.y, mousePos.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.Euler(new Vector3(0, 0, playerRotationAngle));
+            m_avatar.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, playerRotationAngle));
         }
         else
         {
@@ -84,14 +86,14 @@ public class PlayerMovement : MonoBehaviour
     IEnumerator Turner(GameObject target)
     {
         Vector3 targetPos = target.transform.position;
-        targetPos.x = targetPos.x - transform.position.x;
-        targetPos.y = targetPos.y - transform.position.y;
+        targetPos.x = targetPos.x - m_avatar.transform.position.x;
+        targetPos.y = targetPos.y - m_avatar.transform.position.y;
         float rotationAngle = Mathf.Atan2(targetPos.y, targetPos.x) * Mathf.Rad2Deg;
         while (true)
         {
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.AngleAxis(rotationAngle, Vector3.forward), 5f * Time.deltaTime);
+            m_avatar.transform.localRotation = Quaternion.Slerp(m_avatar.transform.localRotation, Quaternion.AngleAxis(rotationAngle, Vector3.forward), 5f * Time.deltaTime);
             yield return new WaitForEndOfFrame();
-            if (Quaternion.Angle(transform.rotation, Quaternion.AngleAxis(rotationAngle, Vector3.forward)) <= 0.01f)
+            if (Quaternion.Angle(m_avatar.transform.localRotation, Quaternion.AngleAxis(rotationAngle, Vector3.forward)) <= 0.01f)
             {
                 break;
             }

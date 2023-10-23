@@ -29,4 +29,10 @@ MonoBehaviour:
   - variableName: PLAY_AMBIENCE
   - variableName: PLAY_MUSIC
   m_sprites: []
-  m_prefabs: []
+  m_prefabs:
+  - id: playerBox
+    prefab: {fileID: 38442293874896880, guid: b407b9b11cee37a40a70f0d17a75a7cc, type: 3}
+  - id: noteBox
+    prefab: {fileID: 7164964782460512410, guid: 15cf386fa2508d442a615a961cd0ab3c, type: 3}
+  - id: noteBoxBlood
+    prefab: {fileID: 3163857386225968458, guid: 55a584105cecb7047940fcc165bcf6b3, type: 3}

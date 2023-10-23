@@ -96,3 +96,7 @@ MonoBehaviour:
     m_type: 4004
     m_pitchVariance: {x: 0.95, y: 1.05}
     m_volume: 0.548
+  - m_clip: {fileID: 8300000, guid: e0962406d65c9ab428fa53c6d394443f, type: 3}
+    m_type: 4005
+    m_pitchVariance: {x: 0.95, y: 1.05}
+    m_volume: 0.548

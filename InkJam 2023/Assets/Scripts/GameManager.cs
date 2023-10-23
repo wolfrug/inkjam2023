@@ -21,11 +21,8 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
-        foreach (InkWriter writer in FindObjectsOfType<InkWriter>())
-        {
-            writer.m_writerStartedEvent.AddListener((x) => SetNarrative = true);
-            writer.m_writerFinishedEvent.AddListener((x) => SetNarrative = false);
-        }
+        m_mainWriter.m_writerStartedEvent.AddListener((x) => SetNarrative = true);
+        m_mainWriter.m_writerFinishedEvent.AddListener((x) => SetNarrative = false);
     }
 
     public void CaughtByZombie()
@@ -46,7 +43,7 @@ public class GameManager : MonoBehaviour
     public void ResetAndRestart()
     {
         m_mainWriter.m_storyData.InkStory = null;
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("WinScene");
     }
     public void VictoryScreen()
     {

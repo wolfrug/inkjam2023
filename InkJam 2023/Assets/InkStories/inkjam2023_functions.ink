@@ -6,6 +6,7 @@ EXTERNAL EXT_HasValue(x,y)
 EXTERNAL EXT_GetValue(x,y)
 
 LIST ingredients = Flour, Roadkill, PigsBlood, Medicine
+VAR notesTaken = 0
 
 ===function EXT_AddToList(x,y)
 [Added {x} to the list {y}]

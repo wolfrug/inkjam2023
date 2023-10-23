@@ -26,7 +26,7 @@ AnimationClip:
     - time: 1
       value: {fileID: 1997431733, guid: 22919e6bb2d510d4fbc5ef9958a5753b, type: 3}
     attribute: m_Sprite
-    path: Avatar
+    path: Avatar_Rotate/Avatar
     classID: 212
     script: {fileID: 0}
   m_SampleRate: 60
@@ -37,7 +37,7 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 299595545
+      path: 41396480
       attribute: 0
       script: {fileID: 0}
       typeID: 212

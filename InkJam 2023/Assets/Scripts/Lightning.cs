@@ -15,7 +15,7 @@ public class Lightning : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SetLightIntensities(0f);
+        SetLightIntensities(m_maxIntensity);
     }
 
     void SetLightIntensities(float intensity)
@@ -36,13 +36,16 @@ public class Lightning : MonoBehaviour
         }
         else if (m_timeSinceLastStrike > 0f)
         {
-            SetLightIntensities(0f);
+            foreach (Light2D go in m_lights)
+            {
+                go.gameObject.SetActive(false);
+            }
         }
     }
     public void LightningStrike()
     {
         transform.rotation = Quaternion.Euler(0f, 0f, Random.Range(m_minMaxZRotation[0], m_minMaxZRotation[1]));
-        SetLightIntensities(m_maxIntensity);
+        m_lights[Random.Range(0, m_lights.Count)].gameObject.SetActive(true);
         AudioManager.Instance.PlaySFX(SFXType.SFX_LIGHTNING);
         m_timeSinceLastStrike = -0.5f;
     }

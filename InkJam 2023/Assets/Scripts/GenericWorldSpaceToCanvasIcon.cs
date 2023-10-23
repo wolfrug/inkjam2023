@@ -62,7 +62,7 @@ public class GenericWorldSpaceToCanvasIcon : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update () {
+    void FixedUpdate () {
         if (canvasObject == null) {
             return;
         }
@@ -115,7 +115,7 @@ public class GenericWorldSpaceToCanvasIcon : MonoBehaviour {
 
     void OnDisable () {
         if (hideIfTargetIsDisabled && Target == gameObject) {
-            canvasObject.gameObject.SetActive (false);
+            canvasObject?.gameObject.SetActive (false);
         }
     }
 }
