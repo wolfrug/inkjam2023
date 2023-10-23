@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Bait
+  - DefaultTarget
+  - Zombie
+  - LOSBlocker
   layers:
   - Default
   - TransparentFX
@@ -11,8 +15,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - Wall
+  - ZombieTarget
   - 
   - 
   - 
@@ -46,4 +50,7 @@ TagManager:
     locked: 0
   - name: WindowLight
     uniqueID: 3097698459
+    locked: 0
+  - name: TopLayer
+    uniqueID: 3216846577
     locked: 0

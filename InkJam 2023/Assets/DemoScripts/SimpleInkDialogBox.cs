@@ -11,6 +11,7 @@ public class SimpleInkDialogBox : InkDialogBox {
     public Button m_continueButton;
     public Button m_skipButton; // put this -above- the continue button ;)
     public bool m_canContinue;
+
     // Start is called before the first frame update
     public override void Start () {
         if (m_continueButton != null) {

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using MiTale;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -16,7 +17,7 @@ public class PlayerMovement : MonoBehaviour
     {
         get
         {
-            return m_enabled;
+            return m_enabled && !GameManager.narrativeOn;
         }
         set
         {
@@ -29,6 +30,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (EnableMovement)
         {
+            m_playerRB.simulated = true;
             Vector2 translate = Vector2.zero;
             if (Input.GetAxis("Vertical") != 0f)
             {
@@ -67,11 +69,38 @@ public class PlayerMovement : MonoBehaviour
         {
             m_playerAnimator.SetFloat("speed", 0f);
             m_playerRB.velocity = Vector3.zero;
+            m_playerRB.simulated = false;
         }
     }
 
     public void PlayFootStepSound()
     {
         m_audioSource.PlayOneShot(SFXType.SFX_FOOTSTEP);
+    }
+    public void TurnTowardsObjectAndInteract(GameObject target)
+    {
+        StartCoroutine(Turner(target));
+    }
+    IEnumerator Turner(GameObject target)
+    {
+        Vector3 targetPos = target.transform.position;
+        targetPos.x = targetPos.x - transform.position.x;
+        targetPos.y = targetPos.y - transform.position.y;
+        float rotationAngle = Mathf.Atan2(targetPos.y, targetPos.x) * Mathf.Rad2Deg;
+        while (true)
+        {
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.AngleAxis(rotationAngle, Vector3.forward), 5f * Time.deltaTime);
+            yield return new WaitForEndOfFrame();
+            if (Quaternion.Angle(transform.rotation, Quaternion.AngleAxis(rotationAngle, Vector3.forward)) <= 0.01f)
+            {
+                break;
+            }
+        }
+        yield return new WaitForSeconds(0.1f);
+        Interact();
+    }
+    public void Interact()
+    {
+        m_playerAnimator.SetTrigger("interact");
     }
 }

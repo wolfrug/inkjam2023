@@ -117,9 +117,9 @@ Material:
     - _OutlineWidth: 0
     - _PerspectiveFilter: 0.875
     - _Reflectivity: 10
-    - _ScaleRatioA: 1
-    - _ScaleRatioB: 1
-    - _ScaleRatioC: 1
+    - _ScaleRatioA: 0.8333333
+    - _ScaleRatioB: 0.6770833
+    - _ScaleRatioC: 0.6770833
     - _ScaleX: 1
     - _ScaleY: 1
     - _ShaderFlags: 0
@@ -164,9 +164,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
   m_Name: Neuton-Italic SDF
   m_EditorClassIdentifier: 
-  hashCode: 0
+  hashCode: 975300557
   material: {fileID: -736848640447975643}
-  materialHashCode: 0
+  materialHashCode: -210607923
   m_Version: 1.1.0
   m_SourceFontFileGUID: ac85da0f72394144f907458eae9bb6be
   m_SourceFontFile_EditorRef: {fileID: 12800000, guid: ac85da0f72394144f907458eae9bb6be, type: 3}

@@ -11,7 +11,8 @@ public class WriterStarted : UnityEvent<TypeWriter> { }
 [System.Serializable]
 public class WriterStopped : UnityEvent<TypeWriter> { }
 
-public class TypeWriter : MonoBehaviour {
+public class TypeWriter : MonoBehaviour
+{
 
     public TextMeshProUGUI self_;
     public float textSpeed_ = 25f;
@@ -28,107 +29,142 @@ public class TypeWriter : MonoBehaviour {
     private bool skipWrite_;
     private float startAlpha_ = 1f;
 
-    private void Start () {
+    private void Start()
+    {
         // VERY UGLY HAHA
-        if (skipButton_ == null) {
-            if (transform.root.GetComponent<InkEngine.SimpleInkWriter> () != null) {
-                skipButton_ = transform.root.GetComponent<InkEngine.SimpleInkWriter> ().CurrentDialogBoxSimple.m_skipButton;
+        if (skipButton_ == null)
+        {
+            if (transform.root.GetComponent<InkEngine.SimpleInkWriter>() != null)
+            {
+                skipButton_ = transform.root.GetComponent<InkEngine.SimpleInkWriter>().CurrentDialogBoxSimple.m_skipButton;
             };
         }
-        if (skipButton_ != null) {
-            skipButton_.onClick.AddListener (() => SkipWrite ());
+        if (skipButton_ != null)
+        {
+            skipButton_.onClick.AddListener(() => SkipWrite());
         };
         startAlpha_ = self_.alpha;
-        if (writeTextOnStart_) {
-            if (clearOldTextWithFade) {
-                StartCoroutine (FadeOutTextAndWrite (self_.text));
-            } else {
-                Write (self_.text);
+        if (writeTextOnStart_)
+        {
+            if (clearOldTextWithFade)
+            {
+                StartCoroutine(FadeOutTextAndWrite(self_.text));
+            }
+            else
+            {
+                Write(self_.text);
             };
-        } else {
-            if (clearOldTextWithFade) {
-                StartCoroutine (FadeOutText ());
-            } else {
-                ClearWriter ();
+        }
+        else
+        {
+            if (clearOldTextWithFade)
+            {
+                StartCoroutine(FadeOutText());
+            }
+            else
+            {
+                ClearWriter();
             };
         }
     }
-    void OnDestroy () {
-        if (skipButton_ != null) {
-            skipButton_.onClick.RemoveListener (() => SkipWrite ());
+    void OnDestroy()
+    {
+        if (skipButton_ != null)
+        {
+            skipButton_.onClick.RemoveListener(() => SkipWrite());
         }
-        StopAllCoroutines ();
+        StopAllCoroutines();
     }
 
-    public void WriteSimple (string text) {
-        Write (text, true, false);
+    public void WriteSimple(string text)
+    {
+        Write(text, true, false);
     }
-    public void Write (string Text, bool clearText = true, bool showEncounterButton = true) {
+    public void Write(string Text, bool clearText = true, bool showEncounterButton = true)
+    {
         // Remove own text if set
         string theText = Text;
-        if (clearText) {
-            if (clearOldTextWithFade) {
+        if (clearText)
+        {
+            if (clearOldTextWithFade)
+            {
                 //  Debug.Log ("Clearing old text with fade and writing - return");
-                StartCoroutine (FadeOutTextAndWrite (theText));
+                StartCoroutine(FadeOutTextAndWrite(theText));
                 return;
-            } else {
-                //    Debug.Log ("Clearing old text, no fade");
-                ClearWriter ();
             }
-        } else {
+            else
+            {
+                //    Debug.Log ("Clearing old text, no fade");
+                ClearWriter();
+            }
+        }
+        else
+        {
             //  Debug.Log ("Adding new text to old text, no clear.");
             theText = self_.text + " " + Text;
         }
         textToWrite_ = theText;
-        StartCoroutine (Writer (theText));
+        StartCoroutine(Writer(theText));
     }
-    public void SkipWrite () {
+    public void SkipWrite()
+    {
         skipWrite_ = true;
-        SetSkipButtonActive (false);
+        SetSkipButtonActive(false);
     }
 
-    IEnumerator FadeOutTextAndWrite (string theText) {
-        yield return StartCoroutine (FadeOutText ());
+    IEnumerator FadeOutTextAndWrite(string theText)
+    {
+        yield return StartCoroutine(FadeOutText());
         textToWrite_ = theText;
-        StartCoroutine (Writer (theText));
+        StartCoroutine(Writer(theText));
     }
-    IEnumerator FadeOutText () {
+    IEnumerator FadeOutText()
+    {
         isWriting_ = true; // this is part of the writing!
-        startedEvent_.Invoke (this);
-        while (self_.alpha > 0f) {
+        startedEvent_.Invoke(this);
+        while (self_.alpha > 0f)
+        {
             self_.alpha -= Time.deltaTime;
             yield return null;
         }
-        ClearWriter ();
+        ClearWriter();
         self_.alpha = startAlpha_;
     }
 
-    IEnumerator Writer (string theText) {
+    IEnumerator Writer(string theText)
+    {
 
-        if (!isWriting_) {
+        if (!isWriting_)
+        {
             isWriting_ = true;
-            startedEvent_.Invoke (this);
-            SetSkipButtonActive (true);
+            startedEvent_.Invoke(this);
+            SetSkipButtonActive(true);
         };
         //  Debug.Log ("Writing text: " + theText);
-        if (!useFade_) {
+        if (!useFade_)
+        {
             // Write the text out one letter at a time
             int stringLength = theText.Length;
             string writtenText = "";
             skipWrite_ = false;
-            for (int i = 0; i < stringLength; i++) {
+            for (int i = 0; i < stringLength; i++)
+            {
                 writtenText += theText[i];
                 // Punctuation!
-                if (IsPunctuation (theText[i])) {
-                    yield return new WaitForSeconds (punctuationPause);
+                if (IsPunctuation(theText[i]))
+                {
+                    yield return new WaitForSeconds(punctuationPause);
                 }
                 self_.text = writtenText;
-                yield return new WaitForSeconds (1f / textSpeed_);
-                if (skipWrite_) {
+                yield return new WaitForSeconds(1f / textSpeed_);
+                if (skipWrite_)
+                {
                     break;
                 }
             }
-        } else { // Use fade > full text is added, but with an alpha of 00
+        }
+        else
+        { // Use fade > full text is added, but with an alpha of 00
             string alphaText = "<alpha=#00>" + theText;
             self_.text = alphaText;
             int stringLength = theText.Length;
@@ -136,48 +172,57 @@ public class TypeWriter : MonoBehaviour {
             string textLeft = theText;
             skipWrite_ = false;
             //StartCoroutine (CharacterFader ());
-            for (int i = 0; i < stringLength; i++) {
-                if (theText[i] == '<') {
-                    while (theText[i] != '>') {
-                        Debug.Log ("Skipped char: " + theText[i]);
+            for (int i = 0; i < stringLength; i++)
+            {
+                if (theText[i] == '<')
+                {
+                    while (theText[i] != '>')
+                    {
+                        Debug.Log("Skipped char: " + theText[i]);
                         writtenText += theText[i];
-                        textLeft.Remove (0, 1);
+                        textLeft.Remove(0, 1);
                         i++;
                     }
-                    Debug.Log ("Skipped final char: " + theText[i]);
+                    Debug.Log("Skipped final char: " + theText[i]);
                     writtenText += theText[i];
                     i++;
                 }
-                textLeft = textLeft.Remove (0, 1);
+                textLeft = textLeft.Remove(0, 1);
                 self_.text = writtenText + "<alpha=#22>" + theText[i] + "<alpha=#00>" + textLeft;
                 //CharacterFader ();
                 writtenText += "<alpha=#22>" + theText[i];
-                writtenText = CharacterFader (writtenText);
+                writtenText = CharacterFader(writtenText);
                 // Punctuation!
-                if (IsPunctuation (theText[i])) {
-                    yield return new WaitForSeconds (punctuationPause);
+                if (IsPunctuation(theText[i]))
+                {
+                    yield return new WaitForSeconds(punctuationPause);
                 }
-                yield return new WaitForSeconds (1f / textSpeed_);
-                if (skipWrite_) {
+                yield return new WaitForSeconds(1f / textSpeed_);
+                if (skipWrite_)
+                {
                     break;
                 }
             }
-            while (self_.text != theText) {
-                if (skipWrite_) {
+            while (self_.text != theText)
+            {
+                if (skipWrite_)
+                {
                     break;
                 }
-                writtenText = CharacterFader (writtenText);
+                writtenText = CharacterFader(writtenText);
                 self_.text = writtenText;
-                yield return new WaitForSeconds (1f / textSpeed_);
+                yield return new WaitForSeconds(1f / textSpeed_);
             }
         }
         self_.text = textToWrite_;
         isWriting_ = false;
-        stoppedEvent_.Invoke (this);
-        SetSkipButtonActive (false);
+        stoppedEvent_.Invoke(this);
+        SetSkipButtonActive(false);
     }
-    public bool IsPunctuation (char character) {
-        switch (character) {
+    public bool IsPunctuation(char character)
+    {
+        switch (character)
+        {
             case '.':
                 return true;
             case ',':
@@ -191,37 +236,54 @@ public class TypeWriter : MonoBehaviour {
         }
         return false;
     }
-    string CharacterFader (string targetText) {
-        if (isWriting_) {
+    string CharacterFader(string targetText)
+    {
+        if (isWriting_)
+        {
             string selfText = targetText;
-            selfText = selfText.Replace ("<alpha=#FF>", "");
-            selfText = selfText.Replace ("<alpha=#EE>", "<alpha=#FF>");
-            selfText = selfText.Replace ("<alpha=#DD>", "<alpha=#EE>");
-            selfText = selfText.Replace ("<alpha=#CC>", "<alpha=#DD>");
-            selfText = selfText.Replace ("<alpha=#BB>", "<alpha=#CC>");
-            selfText = selfText.Replace ("<alpha=#AA>", "<alpha=#BB>");
-            selfText = selfText.Replace ("<alpha=#99>", "<alpha=#AA>");
-            selfText = selfText.Replace ("<alpha=#88>", "<alpha=#99>");
-            selfText = selfText.Replace ("<alpha=#77>", "<alpha=#88>");
-            selfText = selfText.Replace ("<alpha=#66>", "<alpha=#77>");
-            selfText = selfText.Replace ("<alpha=#55>", "<alpha=#66>");
-            selfText = selfText.Replace ("<alpha=#44>", "<alpha=#55>");
-            selfText = selfText.Replace ("<alpha=#22>", "<alpha=#44>");
+            selfText = selfText.Replace("<alpha=#FF>", "");
+            selfText = selfText.Replace("<alpha=#EE>", "<alpha=#FF>");
+            selfText = selfText.Replace("<alpha=#DD>", "<alpha=#EE>");
+            selfText = selfText.Replace("<alpha=#CC>", "<alpha=#DD>");
+            selfText = selfText.Replace("<alpha=#BB>", "<alpha=#CC>");
+            selfText = selfText.Replace("<alpha=#AA>", "<alpha=#BB>");
+            selfText = selfText.Replace("<alpha=#99>", "<alpha=#AA>");
+            selfText = selfText.Replace("<alpha=#88>", "<alpha=#99>");
+            selfText = selfText.Replace("<alpha=#77>", "<alpha=#88>");
+            selfText = selfText.Replace("<alpha=#66>", "<alpha=#77>");
+            selfText = selfText.Replace("<alpha=#55>", "<alpha=#66>");
+            selfText = selfText.Replace("<alpha=#44>", "<alpha=#55>");
+            selfText = selfText.Replace("<alpha=#22>", "<alpha=#44>");
             //selfText.Replace ("<alpha=#00>", "<alpha=#22>");
             return selfText;
             //yield return new WaitForEndOfFrame ();
         }
         return "";
     }
-    public void ClearWriter () {
+    public void ClearWriter()
+    {
         //  Debug.Log ("Clearing writer");
         self_.text = "";
     }
+    public void FadeOutTextAndStopWriting()
+    {
+        StopAllCoroutines();
+        StartCoroutine(FadeOutText());
+        isWriting_ = false;
+    }
 
-    public void SetSkipButtonActive (bool active) {
-        if (skipButton_ != null) {
-            skipButton_.gameObject.SetActive (active);
+    public void SetSkipButtonActive(bool active)
+    {
+        if (skipButton_ != null)
+        {
+            skipButton_.gameObject.SetActive(active);
         }
+    }
+    public void WriteCurrentText()
+    {
+        string textToWrite = self_.text;
+        ClearWriter();
+        Write(textToWrite);
     }
 
 }

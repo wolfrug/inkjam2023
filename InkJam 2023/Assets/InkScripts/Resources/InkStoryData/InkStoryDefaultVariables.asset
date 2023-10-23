@@ -25,5 +25,8 @@ MonoBehaviour:
   - variableName: OTHER_BARK
   - variableName: SET_STORY_IMAGE
   - variableName: SET_STORY_TEXT
+  - variableName: PLAY_SFX
+  - variableName: PLAY_AMBIENCE
+  - variableName: PLAY_MUSIC
   m_sprites: []
   m_prefabs: []

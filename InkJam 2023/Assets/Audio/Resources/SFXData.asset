@@ -76,3 +76,23 @@ MonoBehaviour:
     m_type: 4001
     m_pitchVariance: {x: 0.95, y: 1.05}
     m_volume: 1
+  - m_clip: {fileID: 8300000, guid: f16537a89723f6c4c8046501d440ca5e, type: 3}
+    m_type: 4002
+    m_pitchVariance: {x: 0.95, y: 1.05}
+    m_volume: 1
+  - m_clip: {fileID: 8300000, guid: 98369fbdcddd4024ba0c3456bd40264f, type: 3}
+    m_type: 4003
+    m_pitchVariance: {x: 0.95, y: 1.05}
+    m_volume: 1
+  - m_clip: {fileID: 8300000, guid: eca995511e7134044bb0bc4acd731c95, type: 3}
+    m_type: 5000
+    m_pitchVariance: {x: 0.95, y: 1.05}
+    m_volume: 0.307
+  - m_clip: {fileID: 8300000, guid: e7af3943827e2254ba0b9b0e39fa3cea, type: 3}
+    m_type: 5000
+    m_pitchVariance: {x: 0.95, y: 1.05}
+    m_volume: 0.307
+  - m_clip: {fileID: 8300000, guid: 7786923dd61d156498963ca12b5d5198, type: 3}
+    m_type: 4004
+    m_pitchVariance: {x: 0.95, y: 1.05}
+    m_volume: 0.548

@@ -1,0 +1,90 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdfcb5e9745b0d546a6bede194e1cdfd, type: 3}
+  m_Name: SFX_Zombie
+  m_EditorClassIdentifier: 
+  m_type: 2
+  m_musicClips: []
+  m_ambienceClips: []
+  m_sfxClips:
+  - m_clip: {fileID: 8300000, guid: eca995511e7134044bb0bc4acd731c95, type: 3}
+    m_type: 5000
+    m_pitchVariance: {x: 1, y: 1}
+    m_volume: 1
+  - m_clip: {fileID: 8300000, guid: e7af3943827e2254ba0b9b0e39fa3cea, type: 3}
+    m_type: 5000
+    m_pitchVariance: {x: 1, y: 1}
+    m_volume: 1
+  - m_clip: {fileID: 8300000, guid: 02d3471d4ce11974d9fafe2a562b61ac, type: 3}
+    m_type: 5000
+    m_pitchVariance: {x: 1, y: 1}
+    m_volume: 1
+  - m_clip: {fileID: 8300000, guid: 3b8d820fa3e92a84b80d8c21c5ae6a74, type: 3}
+    m_type: 5000
+    m_pitchVariance: {x: 0.95, y: 1.05}
+    m_volume: 1
+  - m_clip: {fileID: 8300000, guid: e99388585195c9b49ac1c3a92d331450, type: 3}
+    m_type: 5000
+    m_pitchVariance: {x: 0.95, y: 1.05}
+    m_volume: 1
+  - m_clip: {fileID: 8300000, guid: 8cf94e6be215bc14b8a4a23c26c99b86, type: 3}
+    m_type: 5000
+    m_pitchVariance: {x: 0.95, y: 1.05}
+    m_volume: 1
+  - m_clip: {fileID: 8300000, guid: 07c42c4600907384481d82d4d3facfb5, type: 3}
+    m_type: 5000
+    m_pitchVariance: {x: 0.95, y: 1.05}
+    m_volume: 1
+  - m_clip: {fileID: 8300000, guid: 7697860612e5c1b4599821a49fbc782d, type: 3}
+    m_type: 5000
+    m_pitchVariance: {x: 0.95, y: 1.05}
+    m_volume: 1
+  - m_clip: {fileID: 8300000, guid: afdad803568f41646b1e4dde42549924, type: 3}
+    m_type: 5000
+    m_pitchVariance: {x: 0.95, y: 1.05}
+    m_volume: 1
+  - m_clip: {fileID: 8300000, guid: dba8f8fc634cb6c48a3c0d3e2449d154, type: 3}
+    m_type: 5000
+    m_pitchVariance: {x: 0.95, y: 1.05}
+    m_volume: 1
+  - m_clip: {fileID: 8300000, guid: 71968190d0234fd42ac2f293fe1e26e6, type: 3}
+    m_type: 5001
+    m_pitchVariance: {x: 0.95, y: 1.05}
+    m_volume: 1
+  - m_clip: {fileID: 8300000, guid: 0106da4914be6f1458f71152fff4cf0e, type: 3}
+    m_type: 5001
+    m_pitchVariance: {x: 0.95, y: 1.05}
+    m_volume: 1
+  - m_clip: {fileID: 8300000, guid: 3b0245fe142f65a448cd42c9d81b0286, type: 3}
+    m_type: 5001
+    m_pitchVariance: {x: 0.95, y: 1.05}
+    m_volume: 1
+  - m_clip: {fileID: 8300000, guid: db8e73961a555704ba3a4b4ec56b23a9, type: 3}
+    m_type: 5001
+    m_pitchVariance: {x: 0.95, y: 1.05}
+    m_volume: 1
+  - m_clip: {fileID: 8300000, guid: 4e7b23ca950693b4286cf7989cb8f81a, type: 3}
+    m_type: 5001
+    m_pitchVariance: {x: 0.95, y: 1.05}
+    m_volume: 1
+  - m_clip: {fileID: 8300000, guid: 8ac9560930cbae44d91ba97772a7e157, type: 3}
+    m_type: 5003
+    m_pitchVariance: {x: 0.95, y: 1.05}
+    m_volume: 1
+  - m_clip: {fileID: 8300000, guid: 3d281e32dbb3cc24abb1c2bb1db75ac7, type: 3}
+    m_type: 5003
+    m_pitchVariance: {x: 0.95, y: 1.05}
+    m_volume: 1
+  - m_clip: {fileID: 8300000, guid: a789f398e046afb43bd927f8201b8722, type: 3}
+    m_type: 5003
+    m_pitchVariance: {x: 0.95, y: 1.05}
+    m_volume: 1

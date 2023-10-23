@@ -32,14 +32,18 @@ public class Lightning : MonoBehaviour
         m_timeSinceLastStrike += Time.deltaTime;
         if (m_timeSinceLastStrike > Random.Range(m_minMaxTimeBetweenStrikes[0], m_minMaxTimeBetweenStrikes[1]))
         {
-            transform.rotation = Quaternion.Euler(0f, 0f, Random.Range(m_minMaxZRotation[0], m_minMaxZRotation[1]));
-            SetLightIntensities(m_maxIntensity);
-            AudioManager.Instance.PlaySFX(SFXType.SFX_LIGHTNING);
-            m_timeSinceLastStrike = -0.5f;
+            LightningStrike();
         }
         else if (m_timeSinceLastStrike > 0f)
         {
             SetLightIntensities(0f);
         }
+    }
+    public void LightningStrike()
+    {
+        transform.rotation = Quaternion.Euler(0f, 0f, Random.Range(m_minMaxZRotation[0], m_minMaxZRotation[1]));
+        SetLightIntensities(m_maxIntensity);
+        AudioManager.Instance.PlaySFX(SFXType.SFX_LIGHTNING);
+        m_timeSinceLastStrike = -0.5f;
     }
 }
