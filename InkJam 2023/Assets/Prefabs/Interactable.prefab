@@ -196,6 +196,10 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   useStay: 0
+  useRayCastFromCenter: 1
+  m_targetMasks:
+    serializedVersion: 2
+    m_Bits: 192
   activationTimesLeft: -1
   contents: []
 --- !u!58 &1515802291455011277

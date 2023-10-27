@@ -10,10 +10,12 @@ public class PlayerMovement : MonoBehaviour
     public Animator m_playerAnimator;
 
     public Transform m_avatar;
+    public Transform m_baitAttachPoint;
     public Rigidbody2D m_playerRB;
     public CustomAudioSource m_audioSource;
 
     public float m_speed;
+    public float m_speedMultiplier = 1f;
 
     public bool EnableMovement
     {
@@ -59,7 +61,7 @@ public class PlayerMovement : MonoBehaviour
                 translate.y *= 0.7f;
             }
 
-            m_playerRB.velocity = translate * m_speed;
+            m_playerRB.velocity = translate * (m_speed*m_speedMultiplier);
             Vector3 mousePos = Input.mousePosition;
             Vector3 objectPos = Camera.main.WorldToScreenPoint(m_avatar.transform.position);
             mousePos.x = mousePos.x - objectPos.x;

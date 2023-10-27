@@ -185,7 +185,7 @@ You win!
 ==descriptions
 =bait
 {bait<2:
-Some bait. It won't last long, but it might buy you some time. SET_TEXTBOX(playerBox, current)
+Some bait. It won't last long, but it might buy me some time. SET_TEXTBOX(playerBox, current)
 }
 ->END
 =storeroom
@@ -202,7 +202,7 @@ The kitchen. Could use some utensils. SET_TEXTBOX(playerBox, current)
 Yep, still locked and barred. No-one coming in this way... SET_TEXTBOX(playerBox, current)
 ->DONE
 =backdoor
-Wait...was someone there? A man in a cap? ...no. SET_TEXTBOX(playerBox, current)
+Wait...was someone there? The man in the cap? ...no. SET_TEXTBOX(playerBox, current)
 ->DONE
 =hallway
 {I need to clean this place... |This place could use a broom... SET_TEXTBOX(playerBox, player)}
@@ -215,6 +215,9 @@ He stumbled here when the sickness started to get bad... SET_TEXTBOX(playerBox, 
 ->END
 =breaker
 Damn thing keeps going on the fritz...
+->END
+=jasonsroom
+Jason's new room. It doesn't smell great, but it's easy enough to camouflage when needed... SET_TEXTBOX(playerBox, player)
 ->END
 
 ==notes

@@ -5055,7 +5055,7 @@ MonoBehaviour:
   - {x: -0.031338245, y: -0.2609582, z: 0}
   m_ShapePathHash: 1900637666
   m_Mesh: {fileID: 0}
-  m_InstanceId: 274232
+  m_InstanceId: 185186
 --- !u!58 &2209971019236407152
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -5441,7 +5441,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1515802291455011277, guid: c9b9914fefa83e747b5471ce99a5f04f, type: 3}
       propertyPath: m_Radius
-      value: 0.2562136
+      value: 0.43891212
       objectReference: {fileID: 0}
     - target: {fileID: 1515802291455011277, guid: c9b9914fefa83e747b5471ce99a5f04f, type: 3}
       propertyPath: m_Offset.x

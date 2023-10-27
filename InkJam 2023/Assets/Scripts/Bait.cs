@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -21,6 +22,7 @@ public class Bait : MonoBehaviour
     private bool m_wasEaten = false;
 
     private float m_coolDownTime = 1f;
+    private GameObject m_attachTargetCurrent;
 
     void Start()
     {
@@ -52,38 +54,56 @@ public class Bait : MonoBehaviour
     }
     public void PickupBait(GameObject attachTarget, GenericActivate activateable)
     {
-        if (m_baitEatTimeLeft > 0f && !m_isBeingEaten)
+        if (m_baitEatTimeLeft > 0f && !m_isBeingEaten && !m_isCarried && m_coolDownTime > 0f)
         {
+            PlayerMovement pm = attachTarget.GetComponent<PlayerMovement>();
+            if (pm == null) { return; }
+            pm.m_playerAnimator.SetBool("carrying", true);
+            pm.m_speedMultiplier = 0.5f;
             m_sackObject.GetComponent<Collider2D>().enabled = false;
-            transform.SetParent(attachTarget.transform, true);
             GameObject m_bloodCopy = Instantiate(m_bloodObject);
-            m_bloodCopy.transform.SetParent(null);
+            m_bloodCopy.transform.SetParent(null, true);
+            transform.SetParent(pm.m_baitAttachPoint, true);
             m_bloodCopy.GetComponent<SpriteRenderer>().sprite = m_bloodObject.GetComponent<SpriteRenderer>().sprite;
             Destroy(m_bloodCopy, 120f);
             m_bloodObject.SetActive(false);
-            m_coolDownTime = 1f;
+            m_coolDownTime = 0.5f;
             m_isCarried = true;
             m_pickupScript.MakeVisible(true, attachTarget);
+            m_attachTargetCurrent = attachTarget;
         }
     }
     public void DropBait(GameObject attachTarget, GenericActivate activatable)
     {
-        m_sackObject.GetComponent<Collider2D>().enabled = true;
-        transform.SetParent(null);
+        transform.SetParent(null, true);
+        transform.rotation = Quaternion.identity;
         m_bloodObject.SetActive(true);
-        m_isCarried = false;
-        m_coolDownTime = 0f;
+        m_coolDownTime = -0.5f;
         AudioManager.Instance.PlaySFX(SFXType.SFX_DROPBAIT);
+        PlayerMovement pm = attachTarget.GetComponent<PlayerMovement>();
+        if (pm == null) { return; }
+        pm.m_playerAnimator.SetBool("carrying", false);
+        pm.m_speedMultiplier = 1f;
+        m_sackObject.GetComponent<Collider2D>().enabled = true;
+        m_isCarried = false;
     }
-    void Update()
+    void FixedUpdate()
     {
         if (m_isCarried)
         {
             m_coolDownTime -= Time.deltaTime;
             if (Input.GetKeyDown(m_pickupScript.inputButton) && m_coolDownTime < 0f)
             {
-                DropBait(null, null);
+                DropBait(m_attachTargetCurrent, null);
             }
+            if (transform.localPosition != Vector3.zero && transform.parent != null)
+            {
+                transform.localPosition = Vector3.Lerp(transform.localPosition, Vector3.zero, Time.deltaTime * 5f);
+            }
+        }
+        else
+        {
+            m_coolDownTime += Time.deltaTime;
         }
     }
 }

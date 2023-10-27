@@ -91,6 +91,14 @@ public class CustomAudioSource : MonoBehaviour
         }
     }
 
+    public List<AudioSource> AudioSources
+    {
+        get
+        {
+            return m_audioSourcePool;
+        }
+    }
+
     SFXClip GetRandomClip(SFXType type)
     {
         List<SFXClip> clipList = new List<SFXClip> { };
@@ -152,6 +160,7 @@ public class CustomAudioSource : MonoBehaviour
         newAudioSource.spread = source.spread;
         newAudioSource.dopplerLevel = source.dopplerLevel;
         newAudioSource.reverbZoneMix = source.reverbZoneMix;
+        newAudioSource.volume = source.volume;
 
         return newSource as AudioSource;
     }
